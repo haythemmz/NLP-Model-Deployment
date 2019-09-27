@@ -11,7 +11,7 @@ porter = PorterStemmer()
 lancaster=LancasterStemmer()
 #%%
 filename="svm_bow.sav"
-loaded_model = pickle.load(open(filename, 'rb'))
+
 
 #%%
 def normalizer_all(tweet):
@@ -29,5 +29,26 @@ print(clean_message)
 
 
 #a=vectorizer.transform([clean_message])
+
+#%%
+bow= pickle.load(open("bow.sav", 'rb'))
+a=bow.transform([clean_message])
+svm_bow= pickle.load(open("svm_bow.sav", 'rb'))
+print(svm_bow.predict_proba(a.toarray())[0][0])
+
+#%%
+a=bow.transform([clean_message])
+
+#%%
+print(a.shape)
+
+#%%
+svm_bow= pickle.load(open("knn_bow.sav", 'rb'))
+
+#%%
+svm_bow.predict_proba(a.toarray())
+
+#%%
+a.toarray().shape
 
 #%%
